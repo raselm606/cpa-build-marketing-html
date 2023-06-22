@@ -1,0 +1,670 @@
+* { position: relative; margin: 0; padding: 0; border: none; outline: none; font-family: 'Raleway', sans-serif; }
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: default; }
+a img { border: none; outline: none; }
+a { text-decoration: none; }
+ul, li { list-style: none; }
+.clear { clear: both; }
+
+html { width: 100%; overflow-y: scroll; overflow-x: hidden; }
+body { width: 100%; height: 100%; overflow: hidden; background: #ffffff; }
+body.page { background: #f5f5f5; }
+#wrapper { background: #ffffff; z-index: 2; width: 100%; transition: transform 500ms ease, opacity 500ms ease; }
+#wrapper.menu { transform: translateX(-70vw); /*opacity: 0.5;*/ }
+#wrapper.preload { transition: all 0ms !important; }
+
+#preload { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 99999; }
+#preloader { opacity: 0; position: relative; animation: rotate 1s infinite linear; border: 1.5vw solid rgba(255, 255, 255, 0.05); width: 14vw; height: 14vw; margin-left: -7vw; margin-top: -7vw; border-radius: 999px; top: 70%; left: 50%; box-sizing: border-box; }
+#preloader span { position: absolute; width: 14vw; height: 14vw; border: 1.5vw solid transparent; border-top: 1.5vw solid #fff; top: -1.5vw; left: -1.5vw; border-radius: 999px; box-sizing: border-box; }
+@keyframes rotate { from { transform: rotateZ(0) scale(0.8); } to { transform: rotateZ(360deg) scale(0.8); } }
+@-webkit-keyframes rotate { from { transform: rotateZ(0) scale(0.8); } to { transform: rotateZ(360deg) scale(0.8); } }
+#preload-logo { opacity: 0; display: block; position: absolute; width: 37vw; height: 17vw; left: 50%; margin-left: -18.5vw; top: 37%; background-image: url(logo.png); background-size: 100% 100%; background-position: 0% 0%; }
+
+#preloader.google span { border-top-color: #2C8597 !important; }
+#preloader.xbox span { border-top-color: #27AE60 !important; }
+#preloader.steam span { border-top-color: #C23A2E !important; }
+#preloader.psn span { border-top-color: #2F459E !important; }
+#preloader.itunes span { border-top-color: #E8587F !important; }
+#preloader.amazon span { border-top-color: #F39C11 !important; }
+#preloader.spotify span { border-top-color: #61BF61 !important; }
+#preloader.paypal span { border-top-color: #1D6CA1 !important; }
+#preloader.eshop span { border-top-color: #f47c20 !important; }
+#preloader.ubereats span { border-top-color: #60b524 !important; }
+#preloader.mcdonalds span { border-top-color: #C60000 !important; }
+#preloader.fortnite span { border-top-color: #9233B9 !important; }
+#preloader.netflix span { border-top-color: #C60000 !important; }
+#preloader.starbucks span { border-top-color: #007353 !important; }
+#preloader.freefire span { border-top-color: #005492 !important; }
+#preloader.udemy span { border-top-color: #ed5353 !important; }
+#preloader.walmart span { border-top-color: #1170b9 !important; }
+#preloader.hm span { border-top-color: #C60000 !important; }
+#preloader.visa span { border-top-color: #1170B9 !important; }
+#preloader.pizzahut span { border-top-color: #ee3a43 !important; }
+#preloader.ebay span { border-top-color: #E76400 !important; }
+#preloader.roblox span { border-top-color: #f67c39 !important; }
+#preloader.target span { border-top-color: #c60000 !important; }
+#preloader.aliexpress span { border-top-color: #e62e04 !important; }
+#preloader.pubg span { border-top-color: #916834 !important; }
+#preloader.gamestop span { border-top-color: #090909 !important; }
+
+body.preload #preload { display: block; }
+body.page #preload { background: #f5f5f5; }
+body.page #preload-logo { background-position: 200% 0% !important; }
+body.page #preloader { border: 1.5vw solid rgba(0, 0, 0, 0.1); }
+
+#header { height: 15vh; }
+
+#logo { display: block; position: absolute; width: 37vw; height: 17vw; left: 50%; margin-left: -18.5vw; bottom: 0; background-image: url(logo.png); background-size: 100% 100%; background-position: 0% 0%; cursor: pointer; }
+#logo span { display: none; }
+#crown { position: absolute; left: -6vw; width: 37vw; height: 17vw; bottom: 0vw; background-image: url(logo.png); background-size: 0% 0%; background-position: 100% 0%; background-repeat: no-repeat; }
+
+#menu-trigger { position: absolute; right: 8vw; width: 9vw; height: 9vw; bottom: 3.5vw; cursor: pointer; }
+.menu-trigger { height: 12%; margin-top: -6%; width: 100%; background: #333333; position: absolute; top: 50%; transition: all 200ms ease; cursor: pointer; }
+.menu-trigger:nth-child(1) {top: 20%; }
+.menu-trigger:nth-child(3) {top: 80%; }
+#menu-trigger.close .menu-trigger:nth-child(1) { transform: rotate(45deg); top: 50%; }
+#menu-trigger.close .menu-trigger:nth-child(3) { transform: rotate(-45deg); top: 50%; }
+#menu-trigger.close .menu-trigger:nth-child(2) { opacity: 0; }
+
+#menu { position: absolute; width: 100%; height: 100%; z-index: 1; transform: translateX(65vw); transition: transform 500ms ease; background: #e8e8e8; }
+body.page #menu { background: #e3e4e6; }
+#menu.menu { transform: translateX(0); }
+#menu-logo { cursor: pointer; display: block; width: 30vw; height: 14vw; margin-bottom: 7vw; margin-left: 10vw; margin-top: 0.5vw; background-image: url(logo.png); background-size: 100% 100%; background-position: 0 0; }
+#menu ul { padding: 10vw 0 10vw 25vw; }
+#menu li a { line-height: 14vw; display: block; color: #333333; padding: 0 10vw; font-size: 5.5vw; font-weight: 700; cursor: pointer; transition: all 300ms; }
+#menu li a:hover {text-indent: 1vh; background: rgba(0,0,0,0.1); }
+#menu li a.active { color: #fff !important; }
+#menu a span { display: none; margin-right: 3vw; position: absolute; height: 9vw; width: 20vw; background: #fff; top: 3vw; left: -18vw; }
+
+#title { height: 26.5vh; padding: 0 8vw; }
+#title h1 { text-transform: uppercase; color: #333333; font-weight: 700; font-size: 8vw; line-height: 8.5vw; text-align: center; }
+#scroll-down { position: absolute; width: 10vw; height: 6vw; left: 50%; margin-left: -5vw; bottom: 10vw; animation: bounce 0.4s ease-in-out infinite alternate; }
+@keyframes bounce { from { transform: translateY(0px); } to { transform: translateY(10px); } }
+@-webkit-keyframes bounce { from { transform: translateY(0px); } to { transform: translateY(10px); } }
+
+#desktop-notification { display: none; }
+
+#switch { height: 0; opacity: 0; }
+#start { height: 50vh; }
+.start-gift-card { position: absolute; top: 50%; left: 50%; width: 70vw; height: 70vw; margin-left: -35vw; margin-top: -35vw; transition: transform 500ms ease, filter 500ms ease, opacity 500ms ease; outline: 1px solid transparent; background-image: url(cards.svg); background-size: 800% 200%; background-position: 0 0; }
+.start-gift-card .value { position: absolute; color: #fff; bottom: 5vw; text-align: center; width: 100%; font-size: 6vw; font-weight: 400; font-family: 'Open Sans', sans-serif; }
+.start-gift-card.pos-0 { z-index: 4; }
+.start-gift-card.pos-1 { transform: scale(0.8) translateX(-30vw) translateY(2vw) rotateZ(-5deg); filter: brightness(0.85); z-index: 3; } /* blur(0.5vw) */
+.start-gift-card.pos-2 { transform: scale(0.8) translateX(30vw) translateY(2vw) rotateZ(5deg); filter: brightness(0.85); z-index: 2; } /* blur(0.5vw) */
+.start-gift-card.pos-3 { z-index: 1; transform: scale(0.6); opacity: 0; }
+.card-google { background-position: 0% 0% !important; }
+.card-xbox { background-position: -100% 0% !important; }
+.card-steam { background-position: -200% 0% !important; }
+.card-playstation { background-position: -300% 0% !important; }
+.card-spotify { background-position: -400% 0% !important; }
+.card-itunes { background-position: -500% 0% !important; }
+.card-paypal { background-position: -600% 0% !important; }
+.card-amazon { background-position: -700% 0% !important; }
+.card-eshop { background-position: center !important; background-image: url(eshop-card.png) !important; background-size: cover !important;}
+.card-ubereats { background-position: center !important; background-image: url(ubereats-card.html) !important; background-size: cover !important; }
+
+.card-mcdonalds { background-position: center !important; background-image: url(mcdonalds-card.png) !important; background-size: cover !important;}
+.card-nike { background-position: center !important; background-image: url(nike-card.png) !important; background-size: cover !important;}
+
+.card-fortnite { background-position: center !important; background-image: url(fortnite-card.png) !important; background-size: cover !important;}
+.card-netflix { background-position: center !important; background-image: url(netflix-card.html) !important; background-size: cover !important;}
+.card-starbucks { background-position: center !important; background-image: url(starbucks-card.html) !important; background-size: cover !important;}
+.card-freefire { background-position: center !important; background-image: url(freefire-card.html) !important; background-size: cover !important;}
+.card-udemy { background-position: center !important; background-image: url(udemy-card.html) !important; background-size: cover !important;}
+.card-walmart { background-position: center !important; background-image: url(walmart-card.png) !important; background-size: cover !important;}
+.card-hm { background-position: center !important; background-image: url(hm-card.html) !important; background-size: cover !important;}
+.card-visa { background-position: center !important; background-image: url(visa-card.png) !important; background-size: cover !important;}
+.card-pizzahut { background-position: center !important; background-image: url(pizzahut-card.html) !important; background-size: cover !important;}
+.card-ebay { background-position: center !important; background-image: url(ebay-card.png) !important; background-size: cover !important;}
+.card-roblox { background-position: center !important; background-image: url(roblox-card.png) !important; background-size: cover !important;}
+.card-target { background-position: center !important; background-image: url(target-card.html) !important; background-size: cover !important;}
+.card-aliexpress { background-position: center !important; background-image: url(aliexpress-card.html) !important; background-size: cover !important;}
+.card-pubg { background-position: center !important; background-image: url(pubg-card.png) !important; background-size: cover !important;}
+
+#footer { padding: 9vh 0 5vh; }
+#footer::after { content: ' '; position: absolute; bottom: 0; left: 0; width: 100%; height: 70%; background: #000; background: #ffffff; }
+#footer .background { background: #ffffff; position: absolute; top: 0; left: 0; width: 100%; height: 50%; z-index: 1; transform: skewY(-3deg); outline: 1px solid transparent; }
+#footer-logo { width: 30vw; height: 14vw; margin: 0 auto 4vw; z-index: 2; background-image: url(logo.png); background-size: 100% 100%; background-position: 0 0; }
+
+.gift-card-home { padding: 5vw 0; margin-bottom: -1px; transition: padding 500ms ease;}
+.click-area, .click-area * { cursor: pointer; }
+.gift-card-home .background { cursor: pointer; background: #2C8597; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; transform: skewY(-3deg); outline: 1px solid transparent; }
+.gift-card-home .logo { height: 34vw; width: 34vw; margin: 0 auto; z-index: 2; transition: all 500ms ease; background-image: url(cards.svg); background-size: 800% 200%; background-position: 0 -100%; }
+.gift-card-home .hidden { height: auto; opacity: 1; overflow: hidden; z-index: 2; }
+.gift-card-home .text { padding: 6vw 10vw 6vw; text-align: center; color: #fff; font-size: 4.6vw; line-height: 6.7vw; }
+.gift-card-link { cursor: pointer; display: block; font-weight: 700; text-transform: uppercase; color: #fff; font-size: 5vw; background: rgba(0, 0, 0, 0.2); height: 11vw; line-height: 11vw; width: 65vw; margin: 0 auto; text-align: center; border-radius: 7vw; transition: all 300ms; }
+.gift-card-link:hover { background: rgba(0, 0, 0, 0.4); }
+.gift-card-home.show { padding: 8vw 0; }
+.gift-card-home.show .logo { transform: scale(1.15); }
+.logo-google { background-position: 0% -100% !important; }
+.logo-xbox { background-position: -100% -100% !important; }
+.logo-steam { background-position: -200% -100% !important; }
+.logo-playstation { background-position: -300% -100% !important; }
+.logo-spotify { background-position: -400% -100% !important; }
+.logo-itunes { background-position: -500% -100% !important; }
+.logo-paypal { background-position: -600% -100% !important; }
+.logo-amazon { background-position: -700% -100% !important; }
+.logo-eshop { background-image: url(eshop.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-ubereats { background-image: url(ubereats.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-mcdonalds { background-image: url(mcdonalds.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-nike { background-image: url(nike.png)!important; background-size: cover !important; background-position: center!important;  }
+
+.logo-fortnite { background-image: url(fortnite.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-netflix { background-image: url(netflix.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-starbucks { background-image: url(starbucks.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-freefire { background-image: url(freefire.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-udemy { background-image: url(udemy.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-walmart { background-image: url(walmart.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-hm { background-image: url(hm.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-visa { background-image: url(visa.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-pizzahut { background-image: url(pizzahut.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-ebay { background-image: url(ebay.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-roblox { background-image: url(roblox.png)!important; background-size: cover !important; background-position: center!important;  }
+.logo-target { background-image: url(target.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-aliexpress { background-image: url(aliexpress.html)!important; background-size: cover !important; background-position: center!important;  }
+.logo-pubg { background-image: url(pubg.png)!important; background-size: cover !important; background-position: center!important;  }
+
+.bck-google { background: #2C8597 !important; }
+.bck-xbox { background: #27AE60 !important; }
+.bck-steam { background: #C23A2E !important; }
+.bck-psn { background: #2F459E !important; }
+.bck-itunes { background: #E8587F !important; }
+.bck-amazon { background: #F39C11 !important; }
+.bck-spotify { background: #61BF61 !important; }
+.bck-paypal { background: #1D6CA1 !important; }
+.bck-eshop { background: #F47C20 !important; }
+.bck-ubereats { background: #60b524 !important; }
+.bck-mcdonalds { background: #C60000 !important; }
+.bck-fortnite { background: #9233B9 !important; }
+.bck-netflix { background: #C60000 !important; }
+.bck-starbucks { background: #007353 !important; }
+.bck-freefire { background: #005492 !important; }
+.bck-udemy { background: #ed5353 !important; }
+.bck-walmart { background: #1170b9 !important; }
+.bck-hm { background: #C60000 !important; }
+.bck-visa { background: #1170B9 !important; }
+.bck-pizzahut { background: #ee3a43 !important; }
+.bck-ebay { background: #E76400 !important; }
+.bck-roblox { background: #f67c39!important; }
+.bck-target { background: #c60000 !important; }
+.bck-aliexpress { background: #e62e04 !important; }
+.bck-pubg { background: #916834 !important; }
+.bck-nike { background: #d51e16 !important; }
+
+
+
+
+.clr-google { color: #2C8597 !important; }
+.clr-xbox { color: #27AE60 !important; }
+.clr-steam { color: #C23A2E !important; }
+.clr-psn { color: #2F459E !important; }
+.clr-itunes { color: #E8587F !important; }
+.clr-amazon { color: #F39C11 !important; }
+.clr-spotify { color: #61BF61 !important; }
+.clr-paypal { color: #1D6CA1 !important; }
+.clr-eshop { background: #F47C20 !important; }
+.clr-ubereats { background: #60b524 !important; }
+.clr-mcdonalds { background: #C60000 !important; }
+.clr-fortnite { background: #9233B9 !important; }
+.clr-netflix { background: #C60000 !important; }
+.clr-starbucks { background: #007353 !important; }
+.clr-freefire { background: #005492 !important; }
+.clr-udemy { background: #ed5353 !important; }
+.clr-walmart { background: #1170b9 !important; }
+.clr-hm { background: #C60000 !important; }
+.clr-visa { background: #1170B9 !important; }
+.clr-pizzahut { background: #ee3a43 !important; }
+.clr-ebay { background: #E76400 !important; }
+.clr-roblox { background: #f67c39 !important; }
+.clr-target { background: #c60000 !important; }
+.clr-aliexpress { background: #e62e04 !important; }
+.clr-pubg { background: #916834 !important; }
+
+body.page { background: #f5f5f5; }
+body.page #wrapper { background: #f5f5f5; }
+body.page #logo { background-position: 50% 0 !important; }
+body.page #menu-logo { background-position: 50% 0 !important; }
+body.page .menu-trigger { background: #555659; }
+body.page #menu-logo .logo-gc { fill: #555659; }
+body.page #menu li a { color: #555659; }
+body.page #title { padding: 0; }
+body.page #title h1 { color: #555659; font-size: 8vw; line-height: 8.5vw; }
+
+.page-about { padding: 8vw 0; }
+.page-about .background { background: #2C8597; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; transform: skewY(-3deg); outline: 1px solid transparent; }
+.page-about .logo { height: 34vw; width: 34vw; margin: 0 auto; z-index: 2; background-image: url(cards.svg); background-size: 800% 200%; background-position: 0 -100%; transform: scale(1.15); }
+.page-about .text { padding: 6vw 10vw 6vw; text-align: center; color: #fff; font-size: 4.6vw; line-height: 6.7vw; z-index: 2; }
+.page-about .read-more-link { cursor: pointer; display: block; font-weight: 700; text-transform: uppercase; color: #fff; font-size: 5.5vw; width: 70vw; margin: 0 auto; text-align: center; z-index: 2; }
+.page-about .hidden { opacity: 1; overflow: hidden; height: auto; }
+.page-about .hidden-wrapper { padding-bottom: 3vw; }
+.page-about .text h2 { font-size: 5.5vw; line-height: 7.3vw; font-weight: 700; padding: 6vw 0 4vw; }
+.page-about .text p+p { margin-top: 3vw; }
+
+#page .title { text-transform: uppercase; color: #555659; font-weight: 700; font-size: 8vw; line-height: 8.5vw; text-align: center; padding: 10vw 0 8vw; }
+
+#chooser {padding-bottom: 7vw; }
+.choose-gift-card { width: 58vw; height: 58vw; margin: 0 auto; margin-bottom: 5vw; background-image: url(cards.svg); background-size: 800% 200%; }
+.choose-gift-card .value { position: absolute; color: #fff; bottom: 3.5vw; text-align: center; width: 100%; font-size: 5vw; font-weight: 400; font-family: 'Open Sans', sans-serif; }
+
+#header { height: 25vw; }
+#start { height: 90vw; }
+#title { height: 44vw; }
+
+
+/* POPUP WINDOW */
+
+#gboverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; overflow: hidden; display: none; perspective: 500vw; transition: transform 150ms; }
+#gboverlay.noclick { transform: scale(1.02); }
+#gbmouse { z-index: 1; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(245, 245, 245, 0.8); opacity: 0; transition: opacity 400ms ease; transform: translateZ(-1000px) scale(100); }
+#gbmouse.show { opacity: 0.8; }
+#generatorbox { position: absolute; -webkit-backface-visibility: hidden; backface-visibility: hidden; z-index: 2; top: 50%; left: 50%; width: 90vw; height: 126vw; margin-left: -45vw; margin-top: -63vw; background: #2C8597; border-radius: 5vw; box-shadow: 0px 1vw 0 #1f5e6b; opacity: 0; }
+#generatorbox.show { transform: scale(1); opacity: 1; }
+#generatorbox.big {height: 144vw; margin-top: -72vw; }
+#gbinner {padding: 8vw 6vw; box-sizing: border-box; width: 100%; height: 100%; }
+#hacklines {display: none; }
+#steps { height: 8vh; }
+.stepname { position: absolute; top: 0; width: 100%; font-size: 4vw; line-height: 5vw; color: #fff; }
+#step1 { text-align: left; } #step2 { text-align: center; } #step3 { text-align: right; }
+#statusbar { position: absolute; left: 10vw; right: 10vw; height: 1vw; background: #246C7A; bottom: 2vw; border-radius: 1vw; }
+#sbcomplete { position: absolute; z-index: 3; left: 0; top: 0; height: 1vw; border-radius: 1vw; width: 0; background: #fff; }
+.sbcirca { position: absolute; height: 3vw; width: 3vw; top: -1vw; border-radius: 3vw; transition: all 300ms; z-index: 2; background: #246C7A; }
+.sbcirca.active { background: #fff !important; }
+#sbcirca1 { left: -1vw; } #sbcirca2 { left: 50%; margin-left: -1.5vw; } #sbcirca3 {right: -1vw; }
+#statustext { position: absolute; color: #fff; left: 0; width: 100%; box-sizing: border-box; padding: 0 7vw; bottom: 5.5vw; font-size: 4vw; line-height: 5vw; text-align: center; }
+#genlogo { position: absolute; top: 60vw; left: 50%; margin-left: -30vw; margin-top: -25vw; width: 60vw; height: 60vw; transition: opacity 500ms ease; background-image: url(cards.svg); background-size: 800% 200%; }
+#genlogo.hide { opacity: 0; }
+#genreturn {
+    position: absolute;
+    bottom: 15vw;
+    height: 16vw;
+    line-height: 8vw;
+    left: 3vw;
+    right: 3vw;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 600ms;
+}
+#genreturn.active { opacity: 1; }
+#genreturn span { color: #fff; transition: opacity 600ms; font-family: 'Open Sans', sans-serif; font-weight: 400; }
+#genreturn span.final { opacity: 0.5; }
+#widgetholder { position: absolute; overflow: scroll; left: 6vw; right: 6vw; opacity: 0; z-index: 2; 
+	transition: opacity 600ms; height: 97vw; top: 28vw; background: rgba(0,0,0,0.1); border-radius: 3vw; }
+#widgetholder iframe { position: absolute; top: 0; left: 0; width: 100%; height: 301px; overflow: scroll; }
+#widgetholder.show { opacity: 1; }
+#whclick { position: absolute; z-index: 2; top: 0; left: 0; width: 100%; height: 100%; }
+#widgetholder.show #whclick { display: none; }
+
+#generatorbox.popup-google { background: #2C8597; box-shadow: 0px 1vw 0 #1B6574; }
+#generatorbox.popup-google #statusbar { background: #1B6574; }
+#generatorbox.popup-google #statusbar .sbcirca { background: #1B6574; }
+#generatorbox.popup-google #genreturn { left: 7vw; right: 7vw; }
+
+#generatorbox.popup-xbox { background: #27AE60; box-shadow: 0px 1vw 0 #1D7F45; }
+#generatorbox.popup-xbox #statusbar { background: #1D7F45; }
+#generatorbox.popup-xbox #statusbar .sbcirca { background: #1D7F45; }
+#generatorbox.popup-xbox #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-steam { background: #C23A2E; box-shadow: 0px 1vw 0 #8E2A21; }
+#generatorbox.popup-steam #statusbar { background: #8E2A21; }
+#generatorbox.popup-steam #statusbar .sbcirca { background: #8E2A21; }
+#generatorbox.popup-steam #genreturn { left: 12vw; right: 12vw; }
+
+#generatorbox.popup-playstation { background: #2F459E; box-shadow: 0px 1vw 0 #223273; }
+#generatorbox.popup-playstation #statusbar { background: #223273; }
+#generatorbox.popup-playstation #statusbar .sbcirca { background: #223273; }
+#generatorbox.popup-playstation #genreturn { left: 19vw; right: 19vw; }
+
+#generatorbox.popup-spotify { background: #61BF61; box-shadow: 0px 1vw 0 #468C46; }
+#generatorbox.popup-spotify #statusbar { background: #468C46; }
+#generatorbox.popup-spotify #statusbar .sbcirca { background: #468C46; }
+#generatorbox.popup-spotify #genreturn { left: 10vw; right: 10vw; }
+
+#generatorbox.popup-itunes { background: #E8587F; box-shadow: 0px 1vw 0 #A9405D; }
+#generatorbox.popup-itunes #statusbar { background: #A9405D; }
+#generatorbox.popup-itunes #statusbar .sbcirca { background: #A9405D; }
+#generatorbox.popup-itunes #genreturn { left: 17vw; right: 17vw; }
+
+#generatorbox.popup-paypal { background: #1D6CA1; box-shadow: 0px 1vw 0 #154E76; }
+#generatorbox.popup-paypal #statusbar { background: #154E76; }
+#generatorbox.popup-paypal #statusbar .sbcirca { background: #154E76; }
+#generatorbox.popup-paypal #genreturn { left: 5vw; right: 5vw; }
+
+#generatorbox.popup-amazon { background: #F39C11; box-shadow: 0px 1vw 0 #B1710D; }
+#generatorbox.popup-amazon #statusbar { background: #B1710D; }
+#generatorbox.popup-amazon #statusbar .sbcirca { background: #B1710D; }
+#generatorbox.popup-amazon #genreturn { left: 17vw; right: 17vw; }
+
+#generatorbox.popup-eshop { background: #f47c20; box-shadow: 0px 1vw 0 #bc5e20; }
+#generatorbox.popup-eshop #statusbar { background: #bc5e20; }
+#generatorbox.popup-eshop #statusbar .sbcirca { background: #bc5e20; }
+#generatorbox.popup-eshop #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-ubereats { background: #60b524; box-shadow: 0px 1vw 0 #38711a; }
+#generatorbox.popup-ubereats #statusbar { background: #38711a; }
+#generatorbox.popup-ubereats #statusbar .sbcirca { background: #38711a; }
+#generatorbox.popup-ubereats #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-mcdonalds { background: #C60000; box-shadow: 0px 1vw 0 #af5755; }
+#generatorbox.popup-mcdonalds #statusbar { background: #af5755; }
+#generatorbox.popup-mcdonalds #statusbar .sbcirca { background: #af5755; }
+#generatorbox.popup-mcdonalds #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-fortnite { background: #9233B9; box-shadow: 0px 1vw 0 #A83CD4; }
+#generatorbox.popup-fortnite #statusbar { background: #A83CD4; }
+#generatorbox.popup-fortnite #statusbar .sbcirca { background: #A83CD4; }
+#generatorbox.popup-fortnite #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-netflix  { background: #C60000; box-shadow: 0px 1vw 0 #DF0F0F; }
+#generatorbox.popup-netflix #statusbar { background: #DF0F0F; }
+#generatorbox.popup-netflix #statusbar .sbcirca { background: #DF0F0F; }
+#generatorbox.popup-netflix #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-starbucks { background: #007353; box-shadow: 0px 1vw 0 #005138; }
+#generatorbox.popup-starbucks #statusbar { background: #005138; }
+#generatorbox.popup-starbucks #statusbar .sbcirca { background: #005138; }
+#generatorbox.popup-starbucks #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-freefire { background: #005492; box-shadow: 0px 1vw 0 #003d75; }
+#generatorbox.popup-freefire #statusbar { background: #003d75; }
+#generatorbox.popup-freefire #statusbar .sbcirca { background: #003d75; }
+#generatorbox.popup-freefire #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-udemy { background: #ed5353; box-shadow: 0px 1vw 0 #ad4747; }
+#generatorbox.popup-udemy #statusbar { background: #ad4747; }
+#generatorbox.popup-udemy #statusbar .sbcirca { background: #ad4747; }
+#generatorbox.popup-udemy #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-walmart { background: #1170b9; box-shadow: 0px 1vw 0 #2288D6; }
+#generatorbox.popup-walmart #statusbar { background: #2288D6; }
+#generatorbox.popup-walmart #statusbar .sbcirca { background: #2288D6; }
+#generatorbox.popup-walmart #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-hm { background: #C60000; box-shadow: 0px 1vw 0 #A20505; }
+#generatorbox.popup-hm #statusbar { background: #A20505; }
+#generatorbox.popup-hm #statusbar .sbcirca { background: #A20505; }
+#generatorbox.popup-hm #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-visa { background: #1170B9; box-shadow: 0px 1vw 0 #1F88D8; }
+#generatorbox.popup-visa #statusbar { background: #1F88D8; }
+#generatorbox.popup-visa #statusbar .sbcirca { background: #1F88D8; }
+#generatorbox.popup-visa #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-pizzahut { background: #ee3a43; box-shadow: 0px 1vw 0 #90272e; }
+#generatorbox.popup-pizzahut #statusbar { background: #90272e; }
+#generatorbox.popup-pizzahut #statusbar .sbcirca { background: #90272e; }
+#generatorbox.popup-pizzahut #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-ebay { background: #E76400; box-shadow: 0px 1vw 0 #A60101; }
+#generatorbox.popup-ebay #statusbar { background: #A60101; }
+#generatorbox.popup-ebay #statusbar .sbcirca { background: #A60101; }
+#generatorbox.popup-ebay #genreturn { left: 3vw; right: 3vw; }
+
+
+#generatorbox.popup-roblox { background: #f67c39; box-shadow: 0px 1vw 0 #bb5e2e; }
+#generatorbox.popup-roblox #statusbar { background: #bb5e2e; }
+#generatorbox.popup-roblox #statusbar .sbcirca { background: #bb5e2e; }
+#generatorbox.popup-roblox #genreturn { left: 3vw; right: 3vw; }
+
+
+
+
+#generatorbox.popup-target { background: #c60000; box-shadow: 0px 1vw 0 #990505; }
+#generatorbox.popup-target #statusbar { background: #990505; }
+#generatorbox.popup-target #statusbar .sbcirca { background: #990505; }
+#generatorbox.popup-target #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-aliexpress { background: #e62e04; box-shadow: 0px 1vw 0 #aa2a04; }
+#generatorbox.popup-aliexpress #statusbar { background: #aa2a04; }
+#generatorbox.popup-aliexpress #statusbar .sbcirca { background: #aa2a04; }
+#generatorbox.popup-aliexpress #genreturn { left: 3vw; right: 3vw; }
+
+#generatorbox.popup-pubg { background: #916834; box-shadow: 0px 1vw 0 #B28144; }
+#generatorbox.popup-pubg #statusbar { background: #B28144; }
+#generatorbox.popup-pubg #statusbar .sbcirca { background: #B28144; }
+#generatorbox.popup-pubg #genreturn { left: 3vw; right: 3vw; }
+
+
+
+
+.card-gamestop { background-position: center !important; background-image: url(gamestop-card.html) !important; background-size: cover !important;}
+
+.logo-gamestop { background-image: url(gamestop.html)!important; background-size: cover !important; background-position: center!important;  }
+.bck-gamestop { background: #090909 !important; }
+
+.clr-gamestop { background: #090909 !important; }
+
+#generatorbox.popup-gamestop { background: #090909; box-shadow: 0px 1vw 0 #474242; }
+
+#generatorbox.popup-gamestop #statusbar { background: #474242; }
+
+#generatorbox.popup-gamestop #statusbar .sbcirca { background: #474242; }
+
+#generatorbox.popup-gamestop #genreturn { left: 3vw; right: 3vw; }
+
+
+/*-----------------------
+Modify by johurul islam /Start\
+-----------------------*/
+
+
+#preloader.callofduty span { border-top-color: #3E1109 !important; }
+.card-callofduty { background-position: center !important; background-image: url(callofduty-card.png) !important; background-size: cover !important;}
+
+.logo-callofduty { background-image: url(callofduty.png)!important; background-size: cover !important; background-position: center!important;  }
+.bck-callofduty { background: #3E1109 !important; }
+
+.clr-callofduty { background: #3E1109 !important; }
+
+#generatorbox.popup-callofduty { background: #3E1109; box-shadow: 0px 1vw 0 #594d45; }
+
+#generatorbox.popup-callofduty #statusbar { background: #594d45; }
+
+#generatorbox.popup-callofduty #statusbar .sbcirca { background: #594d45; }
+
+#generatorbox.popup-callofduty #genreturn { left: 3vw; right: 3vw; }
+
+
+
+#preloader.nba2k21 span { border-top-color: #055199 !important; }
+.card-nba2k21 { background-position: center !important; background-image: url(nba2k21-card.png) !important; background-size: cover !important;}
+
+.logo-nba2k21 { background-image: url(nba2k21.png)!important; background-size: cover !important; background-position: center!important;  }
+.bck-nba2k21 { background: #055199 !important; }
+
+.clr-nba2k21 { background: #055199 !important; }
+
+#generatorbox.popup-nba2k21 { background: #055199; box-shadow: 0px 1vw 0 #0067a7; }
+
+#generatorbox.popup-nba2k21 #statusbar { background: #0067a7; }
+
+#generatorbox.popup-nba2k21 #statusbar .sbcirca { background: #0067a7; }
+
+#generatorbox.popup-nba2k21 #genreturn { left: 3vw; right: 3vw; }
+
+
+
+#preloader.paysafe span { border-top-color: #6977D9 !important; }
+.card-paysafe { background-position: center !important; background-image: url(paysafe-card.png) !important; background-size: cover !important;}
+
+.logo-paysafe { background-image: url(paysafe.png)!important; background-size: cover !important; background-position: center!important;  }
+.bck-paysafe { background: #6977D9 !important; }
+
+.clr-paysafe { background: #6977D9 !important; }
+
+#generatorbox.popup-paysafe { background: #6977D9; box-shadow: 0px 1vw 0 #97A4FF; }
+
+#generatorbox.popup-paysafe #statusbar { background: #97A4FF; }
+
+#generatorbox.popup-paysafe #statusbar .sbcirca { background: #97A4FF; }
+
+#generatorbox.popup-paysafe #genreturn { left: 3vw; right: 3vw; }
+
+
+
+#preloader.mass-effect span { border-top-color: #3D2A2C !important; }
+.card-mass-effect { background-position: center !important; background-image: url(mass-effect-card.html) !important; background-size: cover !important;}
+
+.logo-mass-effect { background-image: url(mass-effect.html)!important; background-size: cover !important; background-position: center!important;  }
+.bck-mass-effect { background: #3D2A2C !important; }
+
+.clr-mass-effect { background: #3D2A2C !important; }
+
+#generatorbox.popup-mass-effect { background: #3D2A2C; box-shadow: 0px 1vw 0 #74575A; }
+
+#generatorbox.popup-mass-effect #statusbar { background: #74575A; }
+
+#generatorbox.popup-mass-effect #statusbar .sbcirca { background: #74575A; }
+
+#generatorbox.popup-mass-effect #genreturn { left: 3vw; right: 3vw; }
+
+
+
+#preloader.mlb span { border-top-color: #F6A92A !important; }
+.card-mlb { background-position: center !important; background-image: url(mlb-card.png) !important; background-size: cover !important;}
+
+.logo-mlb { background-image: url(mlb.png)!important; background-size: cover !important; background-position: center!important;  }
+.bck-mlb { background: #F6A92A !important; }
+
+.clr-mlb { background: #F6A92A !important; }
+
+#generatorbox.popup-mlb { background: #F6A92A; box-shadow: 0px 1vw 0 #D18404; }
+
+#generatorbox.popup-mlb #statusbar { background: #D18404; }
+
+#generatorbox.popup-mlb #statusbar .sbcirca { background: #D18404; }
+
+#generatorbox.popup-mlb #genreturn { left: 3vw; right: 3vw; }
+
+
+
+#preloader.resident-evil span { border-top-color: #462C2B !important; }
+.card-resident-evil { background-position: center !important; background-image: url(resident-evil-card.html) !important; background-size: cover !important;}
+
+.logo-resident-evil { background-image: url(resident-evil.html)!important; background-size: cover !important; background-position: center!important;  }
+.bck-resident-evil { background: #462C2B !important; }
+
+.clr-resident-evil { background: #462C2B !important; }
+
+#generatorbox.popup-resident-evil { background: #462C2B; box-shadow: 0px 1vw 0 #794A48; }
+
+#generatorbox.popup-resident-evil #statusbar { background: #794A48; }
+
+#generatorbox.popup-resident-evil #statusbar .sbcirca { background: #794A48; }
+
+#generatorbox.popup-resident-evil #genreturn { left: 3vw; right: 3vw; }
+
+
+
+
+/*-----------------------
+Modify by johurul islam /End\
+-----------------------*/
+
+
+
+/* -----------------------------------
+           DESKTOP VERSION
+----------------------------------- */
+
+@media all and (min-aspect-ratio: 25/30) {
+
+  #preload-logo { width: 24vh; height: 24vh; margin-left: -12vh; }
+  #preloader { width: 9vh; height: 9vh; border-width: 1vh !important; margin-left: -4.5vh; margin-top: -4.5vh; }
+  #preloader span { width: 9vh; height: 9vh; border-width: 1vh; top: -1vh; left: -1vh; }
+
+  #header { height: 28vh; }
+  #crown { width: 24vh; height: 11vh; left: 0; }
+ #logo {width: 24vh; height: 24vh; margin-left: -12vh;}
+  #menu-trigger {width: 5vh; height: 5vh; bottom: 3vh; }
+
+  #start { height: 57vh; }
+  .start-gift-card { width: 45vh; height: 45vh; margin-left: -22.5vh; margin-top: -22.5vh; }
+  .start-gift-card.pos-1 { transform: scale(0.8) translateX(-25vh) translateY(2vh) rotateZ(-5deg); }
+  .start-gift-card.pos-2 { transform: scale(0.8) translateX(25vh) translateY(2vh) rotateZ(5deg); }
+  .start-gift-card .value { font-size: 4vh; bottom: 3vh; }
+
+  #title { height: 28vh; }
+  #title h1 { font-size: 5.3vh; line-height: 5.5vh; }
+  #scroll-down { width: 6.5vh; height: 3.55vh; margin-left: -3.25vh; bottom: 6vh; }
+
+  .gift-card-home { padding: 3vh 0; }
+  .gift-card-home.show { padding: 5vh; }
+  .gift-card-home .logo { width: 22vh; height: 22vh; }
+  .gift-card-home .text { padding: 3.6vh 6vh 3.6vh; font-size: 2.75vh; line-height: 4.0vh; width: 48vh; margin: 0 auto; }
+  .gift-card-link { font-size: 3vh; height: 6.6vh; line-height: 6.6vh; width: 40vh; }
+
+  #footer { clear: both; }
+  #footer-logo { width: 19vh; height: 19vh; margin: 0 auto 2.4vh; }
+
+  #wrapper.menu { transform: translateX(-45vh); }
+  #menu { width: 45vh; position: absolute; right: 0; top: 0; transform: translateX(40vh); }
+  #menu.menu { transform: translateX(0); }
+  #menu ul { padding: 6vh 0 6vh 0; }
+  #menu li a { line-height: 8vh; font-size: 3.3vh; padding: 0 6vh; }
+  #menu-logo { width: 19.15vh; height: 19.15vh; margin-bottom: 5vh; margin-left: 6vh; margin-top: 0; }
+
+  body.page #title h1 { font-size: 5.3vh; line-height: 5.5vh; }
+  .page-about { padding: 5vh 0; }
+  .page-about .logo { height: 22vh; width: 22vh; }
+  .page-about .text { padding: 3.6vh 0; font-size: 2.75vh; line-height: 4.0vh; width: 60vh; margin: 0 auto; }
+  .page-about .text > p { width: 48vh; margin: 0 auto; }
+  .page-about .read-more-link { font-size: 3.3vh; }
+  .page-about .text h2 { font-size: 3.3vh; line-height: 4.4vh; padding: 3.6vh 0 2.4vh; }
+  .page-about .hidden-wrapper { padding-bottom: 7vh; }
+
+  #page .title { font-size: 4.8vh; line-height: 5.1vh; padding: 6vh 0 4.8vh; }
+  #choose-card { padding-bottom: 5vh; }
+  #chooser { padding-bottom: 0; }
+  .choose-gift-card { width: 37vh; height: 37vh; margin: 0 auto 3vh; cursor: pointer; }
+  .choose-gift-card .value { bottom: 2vh; font-size: 3.2vh; }
+
+  #generatorbox { width: 44vh; height: 62vh; margin-left: -22vh; margin-top: -31vh; border-radius: 3vh; }
+  #generatorbox.big { height: 70vh; margin-top: -35vh; }
+  #gbinner { padding: 4.8vh 3.6vh; }
+  #steps { height: 8vh; }
+  .stepname { font-size: 1.9vh; line-height: 2vh; }
+  #statusbar { bottom: 1vh; left: 5vh; right: 5vh; height: 0.5vh; }
+  #sbcomplete { height: 0.5vh; }
+  .sbcirca { height: 1.5vh; width: 1.5vh; border-radius: 1.5vh; top: -0.5vh; }
+  #sbcirca1 { left: -0.5vw; }
+  #sbcirca2 { margin-left: -0.75vw; }
+  #sbcirca3 { right: -0.5vw; }
+  #genlogo { width: 30vh; height: 30vh; margin-left: -15vh; margin-top: -15vh; top: 34vh; }
+  #genreturn { bottom: 7vh; height: 9vh; line-height: 4.5vh; font-size: 3.8vh; }
+  #statustext { padding: 0 3vh; bottom: 2.5vh; font-size: 2vh; line-height: 2.6vh; }
+  #widgetholder { left: 3vh; right: 3vh; border-radius: 2vh; height: 37vh; top: 15vh; }
+
+  #generatorbox.popup-google { box-shadow: 0px 0.6vh 0 #20616e; }
+  #generatorbox.popup-google #genreturn { left: 2vh; right: 2vh; }
+ 
+  #generatorbox.popup-xbox { box-shadow: 0px 0.6vh 0 #1D7F45; }
+  #generatorbox.popup-xbox #genreturn { left: 0; right: 0; }
+
+  #generatorbox.popup-steam { box-shadow: 0px 0.6vh 0 #8E2A21; }
+  #generatorbox.popup-steam #genreturn { left: 5vh; right: 5vh; }
+
+  #generatorbox.popup-playstation { box-shadow: 0px 0.6vh 0 #223273; }
+  #generatorbox.popup-playstation #genreturn { left: 9vh; right: 9vh; }
+
+  #generatorbox.popup-spotify { box-shadow: 0px 0.6vh 0 #468C46; }
+  #generatorbox.popup-spotify #genreturn { left: 5vh; right: 5vh; }
+
+  #generatorbox.popup-itunes { box-shadow: 0px 0.6vh 0 #A9405D; }
+  #generatorbox.popup-itunes #genreturn { left: 10vh; right: 10vh; }
+
+  #generatorbox.popup-paypal { box-shadow: 0px 0.6vh 0 #154E76; }
+  #generatorbox.popup-paypal #genreturn { left: 3vh; right: 3vh; }
+
+  #generatorbox.popup-amazon { box-shadow: 0px 0.6vh 0 #B1710D; }
+  #generatorbox.popup-amazon #genreturn { left: 8vh; right: 8vh; }
+
+}
+
+@media all and (min-aspect-ratio: 1/1) {
+
+  #choose-card { height: 37vh; padding-bottom: 8vh; }
+  #chooser { float: left; left: 50%; }
+  .choose-gift-card { width: 37vh; height: 37vh; margin-bottom: 3vh; margin: 0 -3.5vh; left: -50%; float: left; cursor: pointer; }
+
+}
